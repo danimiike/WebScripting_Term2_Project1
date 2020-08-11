@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        
+        <title>Project #1 – Major League Baseball Form</title>
+        
+        <!--********************************************* CSS ***********************************************************--> 
+        <style type="text/css">
+         /*Formate the page*/
+
+            #wrapper{
+                width: 1200px;
+                margin: 0 auto;
+            }
+            
+            body{
+               
+                background: url("https://i.ibb.co/71NwmcV/baseball-Picture.jpg")no-repeat center; 
+                width: 100%;
+                position: relative;
+                overflow-y: auto;
+                font:  12.5px 'Montserrat', sans-serif ;
+                color:  #fff;;
+
+            }
+
+            
+            .form-style{    
+                
+                width: 400px;
+                height: 425px;
+                background-color: rgba(0, 0, 0, 0.397);
+                padding: 30px;
+                margin: 10px auto;
+                box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+                border-radius: 3px;
+                float:right;
+                position: relative;
+                margin-right: 300px;
+                margin-top: 50px;
+            }
+
+            .style2{
+                width: 120px;
+                height: 100px;
+                background-color: rgba(19, 7, 2, 0.89);
+                padding: 20px;
+                border-radius: 4px; 
+                line-height: 35px;
+                position: relative;
+
+            }
+          
+            .style2 select{    
+                width: 75px;
+            }
+
+            label.block1{
+                width: 40px;
+                text-align: left;
+                display: inline-block;
+            }
+
+            label.block2{
+                width: 120px;
+                height: 30px;
+                text-align: right;
+                display: inline-block;
+                color: #fff;
+                border-radius: 5px;
+               
+            }
+            .btn{
+                background-color:  rgba(19, 7, 2, 0.89);
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                width: 26%;
+		        padding: 8px 0;
+
+
+            }
+        </style>
+
+	</head>
+     <!--********************************************* CONTROLS DEFINING   *************************************************-->  
+    <body>
+        
+        <div id = "wrapper"></div>
+            <!--Create the buttons and the text boxes to recieve infomation-->
+            <div class = "form-style">
+                <input type="button" id="retrieve"  class = " btn" value="Retrieve" style= "float:right; position:relative; margin-right:120px; margin-top:5px;" onclick="getBaseballDataAsynch();"/>
+            
+                <div class="style2">
+                    <label class = "block1" for="selYear">Year</label>
+                    <select id="selYear" name = "year">
+                    
+                        <option >2015</option>
+                  		<option >2016</option>
+                  		<option >2017</option>
+                    </select>
+                    <label class = "block1" for="selMonth">Month</label>
+                    <select id="selMonth"name="month" > 
+                        <option >01</option>
+                  		<option >02</option>
+                  		<option >03</option>
+                        <option >04</option>
+                        <option >05</option>
+                        <option >06</option>
+                        <option >07</option>
+                        <option >08</option>
+                        <option >09</option>
+                        <option >10</option>
+                        <option >11</option>
+                        <option >12</option>
+                    </select>
+                    <label class = "block1" for="selDay">Day</label>
+                    <select id="selDay" name = "day" >
+                        <option >01</option>
+                  		<option >02</option>
+                  		<option >03</option>
+                        <option >04</option>
+                  		<option >05</option>
+                  		<option >06</option>
+                        <option >07</option>
+                  		<option >08</option>
+                  		<option >09</option>
+                        <option >10</option>
+                  		<option >11</option>
+                  		<option >12</option>
+                        <option >13</option>
+                  		<option >14</option>
+                  		<option >15</option>
+                        <option >16</option>
+                  		<option >17</option>
+                  		<option >18</option>
+                        <option >19</option>
+                  		<option >20</option>
+                  		<option >21</option>
+                        <option >22</option>
+                  		<option >23</option>
+                  		<option >24</option>
+                        <option >25</option>
+                  		<option >26</option>
+                  		<option >27</option>
+                        <option >28</option>
+                  		<option >29</option>
+                  		<option >30</option>
+                        <option >31</option>
+                    </select>
+                </div>
+                
+                <br /><br />
+                <label class = "block2" for=homeTeam >Home Team Name</label>
+                <input type="text" id="homeTeam" size="30" class="boxes" onkeypress  = "filterText(this);"/>
+                <br /><br />
+                <label class = "block2" for=awayTeam>Away Team Name</label>
+                <input type="text" id="awayTeam" size="30" class="boxes" onkeypress  = "filterText(this);"/>
+                <br /><br />
+                <label class = "block2" for=wPitcher>Winning Pitcher</label>
+                <input type="text" id="wPitcher" size="30" class="boxes" onkeypress  = "filterText(this);"/>
+                <br /><br />
+                <label class = "block2" for=lPitcher>Losing Pitcher</label>
+                <input type="text" id="lPitcher" size="30" class="boxes" onkeypress  = "filterText(this);"/>
+                <br /><br />
+                <label class = "block2" for=Venue>Venue</label>
+                <input type="text" id="Venue" size="20" class="boxes" onkeypress  = "filterText(this);"/>
+                <br /><br />
+                
+                <input type="button"  value="Previous Game"   class = " btn" onclick="getButton(this.value);" onchange = "filterText(this);"/>
+                <input type="button"  value="Next Game"       class = " btn" onclick="getButton(this.value);"  />
+                <input type="button"  value="Save Changes"    class = " btn" style="float: right;" onclick="getButton(this.value);"  />
+                
+        
+            </div>
+        </div>
+        <!--************************************************ JAVA SCRIPT *************************************************-->  
+       
+       <script language="JavaScript" type="text/JavaScript">
+            
+            /*DeclareVariables*/
+            const ISFINISHED = 4;
+            const ISOK = 200;
+            var index = 0 ,year, month, day, arraySize = 0;
+            var filterSet = "";
+            var alphaNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ";
+		    var alphasNum2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890& ";
+            
+            // AJAX asynchronous XMLHttpRequest to get the JSON
+		    // from the site defined by url and using the
+
+            function getJSONAsync (url) {
+                
+                var baseballJson = new XMLHttpRequest();
+
+
+                baseballJson.onreadystatechange = function () {
+                    if (baseballJson.readyState === ISFINISHED && baseballJson.status === ISOK) {
+
+                        //convert the returned data to a JavaScript object
+                        var jsObject = JSON.parse(baseballJson.responseText);
+                        
+                        var games =   jsObject.data.games.game;
+
+                        //if there is no game on the day it puts white spaces in the text boxes and send an alert to the user
+                        if(games == null && games == undefined){
+ 
+                            $gel("homeTeam").value = '';
+                            $gel("awayTeam").value = '';
+                            $gel("wPitcher").value = '';
+                            $gel("lPitcher").value = '';
+                            $gel("Venue").value = '';
+                            alert("No games this day.");
+
+                        }
+
+                        else{
+                            arraySize = jsObject.data.games.game.length;
+
+                            //inserts the values taken from the site in the text boxes
+                            var text1 = $gel("homeTeam");
+                            text1.value = games[index].home_team_name;
+        
+                            var text2 = $gel("awayTeam");
+                            text2.value = games[index].away_team_name;
+        
+                            var text3 = $gel("wPitcher");
+                            text3.value = games[index].winning_pitcher.first + " " + games[index].winning_pitcher.last;
+                            
+                            var text4 = $gel("lPitcher");
+                            text4.value = games[index].losing_pitcher.first + " " + games[index].losing_pitcher.last;
+                            
+                            var text5 = $gel("Venue");
+                            text5.value = games[index].venue;
+
+                            // convert the jsObject object back into a different json string
+                            var jsString = JSON.stringify(jsObject);
+                        }
+
+                    }
+                };
+                // open a connection using the URL
+                baseballJson.open("GET", url);
+                // send the GET request
+                baseballJson.send();
+                
+            }
+           
+            function getBaseballDataAsynch() {
+                // onload event handler creates the URL for a given year month and day
+                year = $gel("selYear").value;
+                month = $gel("selMonth").value;
+                day = $gel("selDay").value;
+    
+                // build a URL as required by the MLB site
+                var tempURL = "http://gd2.mlb.com/components/game/mlb/year_" + year + "/month_" + month + "/day_" + day + "/master_scoreboard.json";
+                // get the data for the specified date with an asynchronous call
+                getJSONAsync(tempURL); 
+            }
+
+            
+            function getButton(button){
+                //analyzes which button was clicked to determine what action will be taken
+                switch(button){ 
+                        case "Next Game":
+                        if(index == arraySize){
+                             alert("This is the last game.");
+                            }
+                            else {
+                                index++;
+
+                            }
+                            break;
+                        case "Previous Game":
+                            //handle decrease limit
+                            if(index === 0){
+                                alert("This is actually the first object in the array!");
+                            }
+                            else{
+                                index--;
+
+                            }
+                            break;
+                        case "Save Changes":
+                            alert("changes saved!")
+                            break;
+
+                }
+
+                var tempURL = "http://gd2.mlb.com/components/game/mlb/year_" + year + "/month_" + month + "/day_" + day + "/master_scoreboard.json";
+                getJSONAsync(tempURL); 
+            }
+    
+            
+            function $gel(id) {
+                return document.getElementById(id);
+            }
+
+            function filterText(ref) {
+			// choose the value of filterSet based on the text box that sent the character
+                if (ref.id === "Venue") {
+                    filterSet = alphas2;
+                }
+                else if (ref.id === "homeTeam" || ref.id === "awayTeam" ||ref.id === "wPitcher" ||ref.id === "lPitcher") {
+                    filterSet = alphaNum;
+                }
+
+                                
+                // Chrome, Edge and Safari use returnValue
+                if (window.event.keyCode === 13) {
+                    alert("You pressed the enter key");
+                }
+                else if (!nCharOK(window.event.keyCode)) {
+                    window.event.returnValue = null;
+                }
+            }
+
+            function nCharOK(c) {
+                var ch = (String.fromCharCode(c));
+                ch = ch.toUpperCase();
+
+                // if the current character is not found in the set of all numbers
+                // set the flag variable to fail
+                if (filterSet.indexOf(ch) !== -1) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+		    }
+            
+        </script>      
+      
+	</body>
+</html>
